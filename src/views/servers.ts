@@ -89,5 +89,12 @@ export default class Servers extends Vue {
       sortable      : true,
       sortDirection : 'desc',
     },
+    {
+      key           : 'private',
+      tdClass       : 'td-version',
+      thClass       : 'th-version',
+      sortable      : false,
+      sortDirection : 'desc',
+    },
   ]
 }

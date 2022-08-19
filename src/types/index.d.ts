@@ -5,6 +5,7 @@ export interface IHost {
   ip?    : string
   port?  : number
   state? : TState | null
+  hidden? : boolean
 }
 
 export interface IServer {

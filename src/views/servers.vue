@@ -59,6 +59,16 @@
         <span v-html="version"/>
       </template>
 
+      <template #head(private)>
+        Private
+        <b-icon icon="info-circle-fill" id="private" @click.stop.prevent/>
+        <b-tooltip target="private" triggers="hover">
+          this is a private server, normally access is given in the <a-ext href="https://discord.gg/CkrXuxh27E">discord</a-ext>
+          and has limited access port 1337, doesn't work
+          it's just a placeholder port therefore it will always fail the online check
+        </b-tooltip>
+      </template>
+
     </b-table>
   </div>
 </template>

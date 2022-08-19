@@ -11,59 +11,39 @@ const linkTree = (branch: string, label?: string, repo?: string) =>
 
 export const servers: IServer[] = [
   {
-    name     : 'Piplup',
+    name     : 'Piplup (Main)',
     server   : { host: 'piplup.smoo.it', ip: '51.178.136.142' },
     location : { flag: 'fr', name: 'France' },
     version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
+    private  : false,
   },
   {
-    name     : 'Sanae',
-    server   : { host: 'sanae.smoo.it', ip: '64.201.219.20' },
-    location : { flag: 'ca', name: 'Canada' },
-  },
-  {
-    name     : 'Parknich',
-    server   : { host: 'parknich.smoo.it', ip: '51.81.86.202' },
-    location : { flag: 'us', name: 'US-East' },
-  },
-  {
-    name     : 'Fruityloops',
-    server   : { host: 'fruityloops.smoo.it', ip: '80.138.131.1' },
-    location : { flag: 'de', name: 'Germany' },
-  },
-  {
-    name     : 'F0C0S',
-    server   : { host: 'f0c0s.smoo.it', ip: '94.130.25.137' },
-    location : { flag: 'de', name: 'Germany' },
-  },
-  {
-    name     : 'Beni',
-    server   : { host: 'beni.smoo.it', ip: '51.68.173.172' },
-    location : { flag: 'de', name: 'Germany' },
-  },
-  {
-    name     : 'Joe',
-    server   : { host: 'joe.smoo.it' },
-    location : { flag: 'ca', name: 'Canada' },
-    version  : linkRelease('1.0.2'),
-  },
-  {
-    name     : 'RCL 1',
-    server   : { host: 'rcl.smoo.it' },
-    location : { flag: 'de', name: 'Germany' },
-    version  : linkRelease('1.0.2'),
-  },
-  {
-    name     : 'RCL 2',
-    server   : { host: 'rcl.smoo.it', port: 1028 },
-    location : { flag: 'de', name: 'Germany' },
-    version  : linkTree('packet-fixes'),
-  },
-  {
-    name     : 'Krokilex',
-    server   : { host: 'krokilex.smoo.it', ip: '37.16.29.245' },
+    name     : 'Piplup (Capture Sync)',
+    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1028 },
     location : { flag: 'fr', name: 'France' },
-    version  : linkRelease('0.3.0', 'rust/0.3.0', 'JulesGuesnon/smo-online-server'),
+    version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
+    private  : false,
+  },
+  {
+    name     : 'Piplup (Debug)',
+    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1806 },
+    location : { flag: 'fr', name: 'France' },
+    version  : linkTree('packet-fixes', 'Sanae6/packet-fixes', 'TeamPiplup/SmoOnlineServer'),
+    private  : false,
+  },
+  {
+    name     : 'Piplup (Voice Proximity)',
+    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1337 },
+    location : { flag: 'fr', name: 'France' },
+    version  : linkTree('master', 'TheUbMunster/master', 'TheUbMunster/SmoOnlineServer'),
+    private  : true,
+  },
+  {
+    name     : 'Piplup (Private)',
+    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1337 },
+    location : { flag: 'fr', name: 'France' },
+    version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
+    private  : true,
   },
 ].map((s: IServer) => {
   s.server.state = null
