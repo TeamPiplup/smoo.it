@@ -37,8 +37,15 @@
         <span class="ip" v-if="ip">{{ ip }}</span>
       </template>
 
-      <template #cell(port)="{ item: { server: { port } } }">
-        <span>{{ port || defaultPort }}</span>
+      <template #cell(port)="{ item: { server: { host, port, hidden } } }">
+        <span v-if="! hidden">{{ port || defaultPort }}</span>
+        <span v-else>
+          <b-icon icon="info-circle-fill" :id="'servers-private-' + host + '-' + port"/>
+          <b-tooltip :target="'servers-private-' + host + '-' + port" triggers="hover">
+            this is a private server, normally access is given in <a-ext href="https://discord.gg/CkrXuxh27E">Piplup's discord</a-ext>
+            (it's just a placeholder port therefore it will always fail the online check)
+          </b-tooltip>
+        </span>
       </template>
 
       <template #cell(location)="{ item }">
@@ -57,16 +64,6 @@
 
       <template #cell(version)="{ item: { version } }">
         <span v-html="version"/>
-      </template>
-
-      <template #head(private)>
-        Private
-        <b-icon icon="info-circle-fill" id="private" @click.stop.prevent/>
-        <b-tooltip target="private" triggers="hover">
-          this is a private server, normally access is given in the <a-ext href="https://discord.gg/CkrXuxh27E">discord</a-ext>
-          and has limited access port 1337, doesn't work
-          it's just a placeholder port therefore it will always fail the online check
-        </b-tooltip>
       </template>
 
     </b-table>

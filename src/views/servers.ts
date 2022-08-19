@@ -90,7 +90,7 @@ export default class Servers extends Vue {
       sortDirection : 'desc',
     },
     {
-      key           : 'private',
+      key           : 'hidden',
       tdClass       : 'td-version',
       thClass       : 'th-version',
       sortable      : false,

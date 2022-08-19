@@ -1,7 +1,6 @@
 <template>
   <div class="app">
     <smoo-header/>
-    <home/>
     <router-view/>
     <smoo-footer/>
   </div>

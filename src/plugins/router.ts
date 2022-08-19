@@ -10,28 +10,9 @@ Vue.use(VueRouter)
 
 const routes: Array<RouteConfig> = [
   {
-    name : 'home',
-    path : '/',
-  },
-  {
-    name      : 'play',
-    path      : '/play/:id?',
-    component : Play,
-  },
-  {
-    name      : 'host',
-    path      : '/host/:id?',
-    component : Host,
-  },
-  {
-    name      : 'servers',
-    path      : '/servers',
+    name      : 'home',
+    path      : '/',
     component : Servers,
-  },
-  {
-    name      : 'faq',
-    path      : '/faq/:id?',
-    component : FAQ,
   },
 ]
 
