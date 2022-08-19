@@ -37,7 +37,7 @@
         <span class="ip" v-if="ip">{{ ip }}</span>
       </template>
 
-      <template #cell(port)="{ item: { server: { host, port, hidden } } }">
+      <template #cell(port)="{ item: { server: { host, port }, hidden } }">
         <span v-if="! hidden">{{ port || defaultPort }}</span>
         <span v-else>
           <b-icon icon="info-circle-fill" :id="'servers-private-' + host + '-' + port"/>

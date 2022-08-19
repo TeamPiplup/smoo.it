@@ -40,7 +40,7 @@ export const servers: IServer[] = [
   },
   {
     name     : 'Piplup (Private)',
-    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 404 },
+    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1337 },
     location : { flag: 'fr', name: 'France' },
     version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
     hidden   : true,
