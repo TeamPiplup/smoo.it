@@ -58,7 +58,7 @@ class XServers extends VuexModule {
     this.startLoading()
     try {
       const { data } = await axios.get(
-        'https://api.smoo.it/servers.json',
+        'https://piplup.smoo.it/servers.json',
         {
           timeout: 10000, // 10s
         },
