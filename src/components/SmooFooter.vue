@@ -1,9 +1,8 @@
 <template>
   <footer>
     <nav>
-      <a-ext href="https://discord.gg/w3TnB899ww" icon="discord">Discord</a-ext>
-      <a-ext href="https://github.com/Istador/smoo.it" icon="github">GitHub</a-ext>
-      <a-ext href="https://rcl.smoo.it/legal" icon="file-earmark-text">Legal notice</a-ext>
+      <a-ext href="https://discord.gg/CkrXuxh27E" icon="discord">Discord</a-ext>
+      <a-ext href="https://github.com/TeamPiplup/smoo.it" icon="github">GitHub</a-ext>
       <b-checkbox class="dark-mode" v-model="darkMode" switch> Dark mode</b-checkbox>
     </nav>
   </footer>
