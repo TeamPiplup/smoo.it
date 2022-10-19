@@ -33,8 +33,8 @@
         </div>
         <div class="ip" v-if="ip && ! hidden">{{ ip }}</div>
         <div class="port" v-if="! hidden" :class="{ 'default': (port || defaultPort) === defaultPort }">{{ port || defaultPort }}</div>
-        <span v-else>
-          <b-icon icon="info-circle-fill" :id="'servers-private-' + host + '-' + port"/>
+        <span v-else class="details">
+          <b-icon icon="exclamation-triangle-fill" :id="'servers-private-' + host + '-' + port"/>
           <b-tooltip :target="'servers-private-' + host + '-' + port" triggers="hover">
             This is a private server. Access is normally given in <a-ext href="https://discord.gg/CkrXuxh27E">Piplup's Discord</a-ext>.
             (It's just a placeholder, therefore it will always fail the online check.)
