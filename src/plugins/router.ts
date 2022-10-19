@@ -1,10 +1,7 @@
 import Vue from 'vue'
 import VueRouter, { RouteConfig } from 'vue-router'
 
-import Play from '@/views/play.vue'
-import Host from '@/views/host.vue'
 import Servers from '@/views/servers.vue'
-import FAQ from '@/views/faq.vue'
 
 Vue.use(VueRouter)
 
@@ -19,10 +16,10 @@ const routes: Array<RouteConfig> = [
 const isVisible = (el: Element) => {
   const rect = el.getBoundingClientRect()
   return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+    rect.top >= 0
+    && rect.left >= 0
+    && rect.bottom <= (window.innerHeight || document.documentElement.clientHeight)
+    && rect.right <= (window.innerWidth || document.documentElement.clientWidth)
   )
 }
 
@@ -50,6 +47,14 @@ const router = new VueRouter({
       setTimeout(() => resolve(scrollTo(to.params.id)), 500)
     })
   },
+})
+
+router.afterEach((to) => {
+  Vue.nextTick(() => {
+    document.title = to.meta?.title
+      || document.querySelector('meta[name="twitter:title"]')?.getAttribute('content')
+      || 'Super Mario Odyssey: Online'
+  })
 })
 
 export default router
