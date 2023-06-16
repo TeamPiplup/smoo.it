@@ -4,8 +4,6 @@ const github = (repo = 'Sanae6/SmoOnlineServer') =>
   `https://github.com/${repo}/`
 const externLink = (href: string, text: string) =>
   '<a href="' + href + '" class="extern" target="_blank">' + text + '</a>'
-const linkRelease = (tag: string, label?: string, repo?: string) =>
-  externLink(github(repo) + 'releases/tag/' + tag, label || tag)
 const linkTree = (branch: string, label?: string, repo?: string) =>
   externLink(github(repo) + 'tree/' + branch, label || branch)
 
@@ -16,6 +14,9 @@ export const servers: IServer[] = [
     location : { flag: 'fr', name: 'France' },
     version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
     hidden   : false,
+    settings : {
+      Server: { MaxPlayers: 10 },
+    },
   },
   {
     name     : 'Piplup (Capture Sync)',

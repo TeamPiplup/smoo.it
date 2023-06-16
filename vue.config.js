@@ -6,7 +6,7 @@ module.exports = defineConfig({
   pages                 : {
     index: {
       entry       : 'src/main.ts',
-      title       : 'Super Mario Odyssey: Online',
+      title       : 'Piplup\'s SMOO Servers',
       description : 'SMOO is an unofficial multiplayer mod for Super Mario Odyssey on the Nintendo Switch.',
     },
   },
