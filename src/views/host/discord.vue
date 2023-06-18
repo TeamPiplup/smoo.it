@@ -24,6 +24,7 @@
       Navigate to the <code>Bot</code> section of the new application and <code>Add Bot</code>.
       Change its username to one you like and maybe add a nice avatar (you'll see this in Discord).
       Uncheck the <code>Public Bot</code> setting that is enabled by default.
+      Also make sure that <code>Message Content Intent</code> is enabled, if you want to send commands to the bot.
     </p>
     <h5>Generate a bot token</h5>
     <p>
@@ -49,12 +50,29 @@
       (otherwise others can send <a-int name="host" id="commands">commands</a-int> to the SMOO server).
       If you don't have one yet, just create one, it is free: simply click on the green plus button at the end of your server list.
     </p>
-    <h5>Create a log channel</h5>
+    <h5>Create an admin channel</h5>
     <p>
-      Create a new channel on the Discord Server where the bot shall write its log messages to.
+      Create a new channel on the Discord Server where the bot shall write its log messages to and receive commands from.
       We'll need to give the channel ID to the SMOO server to link them, but channel IDs normally aren't shown anywhere within Discord.
       To achieve this, the <code>Developer Mode</code> needs to be enabled first in the Discord app settings (under <code>User Settings &gt; App Settings &gt; Advanced</code>).
       Once that is enabled, we can right click on the channel and choose <code>Copy ID</code>.
+    </p>
+    <h5>
+      Create a moderator channel
+      <b-badge variant="primary">Optional</b-badge>
+    </h5>
+    <p>
+      Create a new channel on the Discord Server where the bot shall receive commands from.
+      As with the admin channel we need to give the channel ID to the SMOO server to link them.
+    </p>
+    <h5>Channel permissions</h5>
+    <p>
+      The bot requires the following permissions for the channel(s):
+      <ul>
+        <li><code>General Permissions &gt; View Channel</code></li>
+        <li><code>Text Permissions &gt; Send Messages</code></li>
+        <li><code>Text Permissions &gt; Read Message History</code> (to receive commands)</li>
+      </ul>
     </p>
     <h5>Configure the server</h5>
 <code class="style float-right ml-3 mb-3">
@@ -63,15 +81,21 @@
 <b>"Discord"</b>: {
   <b>"Token"</b>: <a>"MTAwND...TI0c"</a>,
   <b>"Prefix"</b>: <a>"$"</a>,
-  <b>"LogChannel"</b>: <a>"993864963574140000"</a>
+  <b>"CommandChannel"</b>: <a>"993864963574140002"</a>,
+  <b>"LogChannel"</b>: <a>"993864963574140001"</a>
 }
 </pre>
 </code>
     <p>
-      Now that we have set everything else up and have the bot token and the channel ID we need to enter both into the
+      Now that we have set everything else up and have the bot token and the channel IDs we need to enter them into the
       <a-int name="host" id="settings">settings.json</a-int>.
       After changing the <code>settings.json</code> we either need to restart the SMOO server or send it the
       <kbd>loadsettings</kbd> <a-int name="host" id="commands">command</a-int>.
+    </p>
+    <p>
+      The admin channel ID goes into the <code>LogChannel</code> setting, and the moderator channel ID into the <code>CommandChannel</code> setting.
+      The difference between both channels is, that the command channel won't receive the server log.
+      But both channels can send commands to the server.
     </p>
     <p>
       If everything is set up correctly, the Discord bot should now be shown as online on the Discord server.

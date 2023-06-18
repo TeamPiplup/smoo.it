@@ -6,11 +6,12 @@
       sort-by="state"
       striped
     >
-      <template #cell(state)="{ item: { name, server, settings } }">
+      <template #cell(state)="{ item: { name, server, settings, dead } }">
         <smoo-server-state
           :name="name"
           :server="server"
           :settings="settings"
+          :can-be-dead="dead"
           @state="server.state = $event"
         />
       </template>
@@ -19,20 +20,40 @@
         Server
         <b-icon icon="info-circle-fill" id="servers-hostname" @click.stop.prevent/>
         <b-tooltip target="servers-hostname" triggers="hover">
-          Entering the hostname instead of an IPv4 address or changing the port is currently only possible with a
-          <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/tag/latest-dev">dev build</a-ext>
-          of the mod.
+          <p>
+            Entering the hostname instead of an IPv4 address or changing the port is currently only possible with a
+            <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/tag/latest-dev">dev build</a-ext>
+            of the mod.
+          </p>
+          <p>
+            Entering hostnames doesn't work with the <a-int name="play" id="yuzu">yuzu</a-int> emulator.
+          </p>
         </b-tooltip>
       </template>
 
       <template #cell(server)="{ item: { name, server: { host, ip, port }, link, hidden } }">
         <div class="name"><b>{{ name }}</b></div>
-        <div class="host" v-if="host && ! hidden">
+        <div class="host" v-if="host && !hidden">
           <a-ext v-if="link" :href="link">{{ host }}</a-ext>
           <span v-else>{{ host }}</span>
         </div>
-        <div class="ip" v-if="ip && ! hidden">{{ ip }}</div>
-        <div class="port" v-if="! hidden" :class="{ 'default': (port || defaultPort) === defaultPort }">{{ port || defaultPort }}</div>
+        <div class="ip" v-if="ip && !hidden">{{ ip }}</div>
+        <div class="ip dynamic" v-if="!ip && !hidden">
+          <b-badge
+            variant="secondary"
+            :id="'dynamic-ip-badge-' + host + '-' + port"
+          >
+            dynamic
+          </b-badge>
+          <b-tooltip
+            :target="'dynamic-ip-badge-' + host + '-' + port"
+            placement="top"
+            boundary="viewport"
+          >
+            <span v-html="getIPv4({ host, port })"/>
+          </b-tooltip>
+        </div>
+        <div class="port" v-if="!hidden" :class="{ 'default': (port || defaultPort) === defaultPort }">{{ port || defaultPort }}</div>
         <span v-else class="details">
           <b-icon icon="exclamation-triangle-fill" :id="'servers-private-' + host + '-' + port"/>
           <b-tooltip :target="'servers-private-' + host + '-' + port" triggers="hover">

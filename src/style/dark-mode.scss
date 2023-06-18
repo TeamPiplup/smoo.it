@@ -30,6 +30,11 @@ body.smoo-dark-mode {
     border-color: rgba($text-1, 0.1);
   }
 
+  .alert-warning {
+    color: rgba(hsla(45deg, 24%, 47%), 1.0);
+    background-color: rgba(hsla(46deg, 100%, 10%), 1.0);
+    border-color: rgba(hsla(45deg, 100%, 16%), 1.0);
+  }
 
   .card {
     color: $text-2;
@@ -62,6 +67,7 @@ body.smoo-dark-mode {
   }
 
   .table {
+    color: $text-2;
     color: unset;
     th, td {
       border-color: rgba($text-1, 0.1);
@@ -95,6 +101,14 @@ body.smoo-dark-mode {
   }
   .state-component.unknown {
     color: $text-2;
+  }
+
+  .smoo-view-host-commands {
+    .card-body > div, .card-body .sub-commands > div {
+      &:not(:first-child) {
+        border-top: 1px solid rgba(white, 0.05);
+      }
+    }
   }
 
 

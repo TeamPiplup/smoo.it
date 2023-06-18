@@ -1,4 +1,4 @@
-export type TState = 'loading' | 'offline' | 'online' | 'unknown'
+export type TState = 'loading' | 'offline' | 'online' | 'unknown' | 'dead'
 
 export interface IHost {
   host?  : string
@@ -15,6 +15,7 @@ export interface ICostume {
 
 export interface IPlayer {
   Name?    : string
+  Kingdom? : string
   Stage?   : string
   Costume? : ICostume
 }

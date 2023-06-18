@@ -3,17 +3,19 @@ import { Next } from 'vue-router'
 
 import CountryFlag from 'vue-country-flag'
 
-import { IServer } from '@/types'
+import { IHost, IServer } from '@/types'
 import SmooServerState from '@/components/SmooServerState.vue'
 
 import { servers } from '@/store/servers'
-import XServers from '@/store/xservers'
+import XServers, { getIPv4 } from '@/store/xservers'
 
 const stateFormatter = (_v: null, _k: string, i: IServer): number => {
   switch (i.server.state || '') {
   case 'online': return 0
   case 'unknown': return 1
-  case 'offline': default: return 2
+  case 'offline': return 2
+  case 'dead': return 3
+  default: return 2
   }
 }
 
@@ -27,7 +29,7 @@ const stateFormatter = (_v: null, _k: string, i: IServer): number => {
       XServers.refetch()
       self.interval = setInterval(
         () => XServers.refetch(),
-        30000, // 30s
+        15000, // 15s
       )
     })
   },
@@ -80,4 +82,9 @@ export default class Servers extends Vue {
       sortDirection : 'desc',
     },
   ]
+
+  getIPv4 ({ host, port }: IHost) {
+    const ipv4 = getIPv4({ host, port })
+    return (ipv4 ? 'IPv4: <code>' + ipv4 + '</code>' : '')
+  }
 }
