@@ -7,10 +7,15 @@
       Choose one of the <a-int name="servers">public servers</a-int> and type in its IPv4 address.
       <b-icon icon="info-circle-fill" :id="'play-test-hostname-' + _uid"/>
       <b-tooltip :target="'play-test-hostname-' + _uid" triggers="hover">
-        The <code>Host</code> entry in the server list is a convenient alternative to entering the IPv4 address.
-        But it is currently only possible with a
-        <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/tag/latest-dev">dev build</a-ext>
-        of the mod.
+        <p>
+          The <code>Host</code> entry in the server list is a convenient alternative to entering the IPv4 address.
+          But it is currently only possible with a
+          <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/tag/latest-dev">dev build</a-ext>
+          of the mod.
+        </p>
+        <p>
+          Entering hostnames doesn't work with the <a-int name="play" id="yuzu">yuzu</a-int> emulator.
+        </p>
       </b-tooltip>
       On newer versions of the mod the game will also ask for the port.
     </p>
@@ -23,7 +28,23 @@
     <p>
       When there is no immediate error, then <code>Start</code> a new game or <code>Resume</code> an existing save.
       Check out the in-game <a-int name="faq" id="101">debug menu</a-int> for the
-      <code>Client Socket Connection Status: Socket Connected</code>.
+      <code>Client Socket Connection Status: Socket Connected</code> <b-icon icon="info-circle-fill" :id="'play-test-socket-status-' + _uid"/>
+      at the top of the menu.
+      <b-tooltip :target="'play-test-socket-status-' + _uid" triggers="hover">
+        <p>
+          If you are not connected it should read
+          <code>Client Socket Connection Status: Socket unavailable</code>
+          instead.
+        </p>
+        <p>
+          Note that the
+          <code>Connection Status: Online</code>
+          or
+          <code>Connection Status: Offline</code>
+          further down in the menu is not your own connection status,
+          but the status of the selected puppet slot for other players.
+        </p>
+      </b-tooltip>
       If there are other players connected to the server, the <code>Total Connected Players</code> count should be above <code>1</code>
       and they should appear in the player list.
     </p>

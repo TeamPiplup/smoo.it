@@ -3,9 +3,11 @@ import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import moment from 'moment'
 
 import { IHost, ISettings, IPlayer } from '@/types'
-import XServers, { getState, getResult } from '@/store/xservers'
+import { getResult, getStamp, getState } from '@/store/xservers'
 
-import { stages } from '@/views/host/commands'
+import { costumes } from '@/store/costumes'
+import { kingdom2name, TKingdom } from '@/store/kingdoms'
+import { Stages } from '@/store/xstages'
 
 @Component({})
 export default class SmooServerState extends Vue {
@@ -15,13 +17,18 @@ export default class SmooServerState extends Vue {
   @Prop({ required: true, type: Object })
   server! : IHost
 
+  @Prop({ required: false, type: Boolean, default: false })
+  canBeDead! : boolean
+
   @Prop({ required: false, type: Object, default: null })
   settings! : ISettings | null
 
-  stages = stages
+  kingdoms = kingdom2name
+  stages = Stages
+  costumes = costumes
 
-  get state () { return getState(this.server) }
-  get stamp () { return XServers.stamp }
+  get state () { return getState(this.server, this.canBeDead) }
+  get stamp () { return getStamp(this.server) }
   get result () { return getResult(this.server) }
 
   get currentSettings () : ISettings | null {
@@ -49,6 +56,7 @@ export default class SmooServerState extends Vue {
     if (this.state === 'loading') { return 'arrow-clockwise' }
     if (this.state === 'unknown') { return 'circle' }
     if (this.tooOld) { return 'circle' }
+    if (this.state === 'dead') { return 'skull' }
     return 'circle-fill'
   }
 
@@ -57,8 +65,8 @@ export default class SmooServerState extends Vue {
   }
 
   get tooOld () : boolean {
-    if (!XServers.date) { return true }
-    return moment().diff(XServers.stamp, 'minutes') > 60
+    if (!this.stamp) { return true }
+    return moment().diff(this.stamp, 'minutes') > 60
   }
 
   @Watch('state')
@@ -98,6 +106,45 @@ export default class SmooServerState extends Vue {
       + (state !== 'loading' && stamp ? ' &bull; ' + moment(stamp).fromNow() : '')
       + '</p>'
       + (settings.length ? '<p>' + settings.join('<br/>') + '</p>' : '')
+  }
+
+  stage2kingdom (stage: string) : TKingdom | null {
+    const stages = this.stages.result
+    if (!stages) { return null }
+    for (const k of Object.keys(kingdom2name)) {
+      if (stage in stages[k as TKingdom]) {
+        return k as TKingdom
+      }
+    }
+    return null
+  }
+
+  player2kingdom (player: IPlayer) : string | null {
+    if (player.Kingdom) { return player.Kingdom }
+    if (!player.Stage) { return null }
+    const k = this.stage2kingdom(player.Stage)
+    if (!k) { return null }
+    return this.kingdoms[k]
+  }
+
+  player2stage (player: IPlayer) : string | null {
+    if (!player.Stage) { return null }
+    if (player.Stage === 'HomeShipInsideStage') { return 'Odyssey' }
+    if (!this.stages.result) { return null }
+    const k = this.stage2kingdom(player.Stage)
+    return (k ? this.stages.result[k][player.Stage].name || null : null)
+  }
+
+  get hasLocations () : boolean {
+    return !!(this.players && this.players.some(p => p.Kingdom || p.Stage))
+  }
+
+  get hasCostumes () : boolean {
+    return !!(this.players && this.players.some(p => p.Costume))
+  }
+
+  get hasStages () : boolean {
+    return !!(this.players && this.players.some(p => p.Stage))
   }
 
   mounted () {

@@ -15,7 +15,10 @@ export const servers: IServer[] = [
     version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
     hidden   : false,
     settings : {
-      Server: { MaxPlayers: 10 },
+      Server        : { MaxPlayers: 10 },
+      Scenario      : { MergeEnabled: true },
+      Shines        : { Enabled: true },
+      PersistShines : { Enabled: true },
     },
   },
   {

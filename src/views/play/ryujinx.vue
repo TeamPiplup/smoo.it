@@ -62,7 +62,8 @@
       <b>Step 1</b>:
       Download the latest
       <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/tag/latest-dev">dev build</a-ext>
-      of the mod (not the source code, unless you want to <a-int name="play" id="build">build it yourself</a-int>).
+      of the mod whose filename ends with <code>_for_Ryujinx.zip</code>.
+      The last asset in the list is the newest.
     </p>
     <p>
       <b>Step 2</b>:
@@ -70,7 +71,7 @@
       From the folder that opens, travel down into the <code>sdcard</code> folder.
       <b-icon icon="info-circle-fill" id="play-ryujinx-sdcard-folder"/>
       <b-tooltip target="play-ryujinx-sdcard-folder" triggers="hover">
-        On Windows it should be located at <code>%appdata%\Ryujinx\sdcard</code>.
+        On <font-awesome-icon icon="fa-brands fa-windows"/> Windows it should be located at <code>%appdata%\Ryujinx\sdcard</code>.
       </b-tooltip>
     </p>
     <p>
