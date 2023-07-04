@@ -1,0 +1,5 @@
+/secrets.env
+
+/*.json
+/*.tmp
+/*.lock
