@@ -144,6 +144,7 @@ scan_all() {
   local force="${1:-}"
   local servers=(
     piplup.smoo.it:1027
+    piplup.smoo.it:1028
     piplup.smoo.it:1806
   )
   local IFS=$'\n'
