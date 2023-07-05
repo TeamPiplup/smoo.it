@@ -2,17 +2,6 @@
 $servers = [
   'all',
   'piplup.smoo.it:1027',
-  'sanae.smoo.it:1027',
-  'tmdog.smoo.it:1027',
-  'f0c0s.smoo.it:1027',
-  'parknich.smoo.it:1027',
-  'yann.smoo.it:1027',
-  'rcl.smoo.it:1027',
-  'rcl.smoo.it:1028',
-  'rcl.smoo.it:1029',
-  'krokilex.smoo.it:1027',
-  'jeff.smoo.it:1027',
-  'ninunity.smoo.it:62102',
 ];
 
 $file = basename($_SERVER['REQUEST_URI'] ?? '');

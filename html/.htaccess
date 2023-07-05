@@ -20,4 +20,3 @@ Options -Indexes
   Header add Access-Control-Allow-Origin %{AccessControlAllowOrigin}e env=AccessControlAllowOrigin
   Header merge Vary Origin
 </IfModule>
-

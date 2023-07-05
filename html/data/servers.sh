@@ -74,8 +74,7 @@ get_status() {
   local auths
   declare -A auths=(
     ["piplup.smoo.it:1027"]="PIPLUP"
-    ["piplup.smoo.it:1806"]="PIPLUP_DEBUG"
-    
+    ["piplup.smoo.it:1028"]="PIPLUP"
   )
 
   # get secret token
@@ -92,6 +91,8 @@ get_status() {
   if [ "$token" != "" ] && [ "$online" == 'true' ] ; then
     # get more details via JSON-API
     online=`get_details ${host} ${port} ${token}`
+    # piplup_status is a public token to request from the json api
+    #online="piplup_status"
   fi
   local stamp=`date --iso-8601=seconds`
   echo "{\"stamp\":\"$stamp\",\"host\":\"${host}\",\"ipv4\":\"${ipv4}\",\"port\":${port},\"state\":${online}}"
@@ -109,14 +110,7 @@ scan_one() {
   declare -A times=(
     # refresh servers with JSON API more often:
     ["piplup.smoo.it:1027"]="3"
-    ["rcl.smoo.it:1027"]="1"
-    ["rcl.smoo.it:1028"]="1"
-    ["rcl.smoo.it:1029"]="1"
-    # refresh dead servers less often:
-    ["f0c0s.smoo.it:1027"]="30"
-    ["parknich.smoo.it:1027"]="30"
-    ["yann.smoo.it:1027"]="30"
-    ["jeff.smoo.it:1027"]="30"
+    ["piplup.smoo.it:1028"]="3"
   )
   local timex="${times[$host:$port]:-10}"
 
@@ -149,18 +143,8 @@ export -f scan_one_line
 scan_all() {
   local force="${1:-}"
   local servers=(
-    piplup.smoo.it:
-    sanae.smoo.it:
-    #tmdog.smoo.it:
-    f0c0s.smoo.it:
-    parknich.smoo.it:
-    yann.smoo.it:
-    rcl.smoo.it:
-    rcl.smoo.it:1028
-    rcl.smoo.it:1029
-    krokilex.smoo.it:
-    jeff.smoo.it:
-    ninunity.smoo.it:62102
+    piplup.smoo.it:1027
+    piplup.smoo.it:1806
   )
   local IFS=$'\n'
   local output=(`parallel  --colsep=:  -j 4  -k  --nice 19  scan_one_line  :::  "${servers[@]}"  :::  "$force"`)
