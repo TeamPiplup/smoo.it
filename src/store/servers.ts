@@ -10,8 +10,8 @@ const linkTree = (branch: string, label?: string, repo?: string) =>
 export const servers: IServer[] = [
   {
     name     : 'Piplup (Main)',
-    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142' },
-    location : { flag: 'fr', name: 'France' },
+    server   : { host: 'piplup.smoo.it', ip: '143.198.241.242' },
+    location : { flag: 'gb', name: 'United Kingdom' },
     version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
     hidden   : false,
     settings : {
@@ -23,29 +23,29 @@ export const servers: IServer[] = [
   },
   {
     name     : 'Piplup (Capture Sync)',
-    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1028 },
-    location : { flag: 'fr', name: 'France' },
+    server   : { host: 'piplup.smoo.it', ip: '143.198.241.242', port: 1028 },
+    location : { flag: 'gb', name: 'United Kingdom' },
     version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
     hidden   : false,
   },
   {
     name     : 'Piplup (Debug)',
-    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1806 },
-    location : { flag: 'fr', name: 'France' },
+    server   : { host: 'piplup.smoo.it', ip: '143.198.241.242', port: 1806 },
+    location : { flag: 'gb', name: 'United Kingdom' },
     version  : linkTree('packet-fixes', 'Sanae6/packet-fixes', 'TeamPiplup/SmoOnlineServer'),
     hidden   : false,
   },
   {
     name     : 'Piplup (Voice Proximity)',
-    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 404 },
-    location : { flag: 'fr', name: 'France' },
+    server   : { host: 'piplup.smoo.it', ip: '143.198.241.242', port: 404 },
+    location : { flag: 'gb', name: 'United Kingdom' },
     version  : linkTree('master', 'TheUbMunster/master', 'TheUbMunster/SmoOnlineServer'),
     hidden   : true,
   },
   {
     name     : 'Piplup (Private)',
-    server   : { host: 'piplup.smoo.it', ip: '51.178.136.142', port: 1337 },
-    location : { flag: 'fr', name: 'France' },
+    server   : { host: 'piplup.smoo.it', ip: '143.198.241.242', port: 1337 },
+    location : { flag: 'gb', name: 'United Kingdom' },
     version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
     hidden   : true,
   },
