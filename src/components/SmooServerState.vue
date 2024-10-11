@@ -30,7 +30,7 @@
       @show="hasStages && stages.fetch()"
     >
       <template #modal-title>
-        Players on <code>{{ name }}</code>
+        Players on <code>{{ name }}</code> <b-icon icon="info-circle-fill" v-b-tooltip.html="() => title()"/>
       </template>
 
       <b-overlay :show="state == 'loading'" variant="transparent">
@@ -40,13 +40,14 @@
               <th>Player</th>
               <th v-if="hasLocations">Location</th>
               <th v-if="hasCostumes">Costume</th>
+              <th v-else-if="hasCaptures">Capture</th>
             </tr>
           </thead>
           <tbody>
             <tr v-for="(player, idx) of players" :key="name + ';' + idx + ';' + player.Name">
               <td>{{ player.Name || '#' + (idx + 1) }}</td>
               <td v-if="hasLocations">
-                <b-overlay :show="player.Stage && stages.loading" variant="transparent">
+                <b-overlay :show="!!player.Stage && stages.loading" variant="transparent">
                   <div class="location-kingdom" v-if="player.Kingdom || (player.Stage && stages.initialized)">
                     {{ player2kingdom(player) }}
                   </div>
@@ -57,14 +58,14 @@
                   </div>
                 </b-overlay>
               </td>
-              <td v-if="hasCostumes" class="costume">
+              <td v-if="hasCostumes || hasCaptures" class="costume">
                 <div
                   v-if="player.Costume && player.Costume.Cap"
                   class="costume-cap"
                   :title="player.Costume.Cap"
                   v-b-tooltip="{boundary:'viewport',placement:'top'}"
                 >
-                  {{ costumes.Cap[player.Costume.Cap] || 'Unknown'  }}
+                  {{ costumes.Cap[player.Costume.Cap] || 'Unknown' }}
                 </div>
                 <div
                   v-if="player.Costume && player.Costume.Body"
@@ -73,6 +74,14 @@
                   v-b-tooltip="{boundary:'viewport',placement:'bottom'}"
                 >
                   {{ costumes.Body[player.Costume.Body] || 'Unknown' }}
+                </div>
+                <div
+                  v-if="player.Capture"
+                  class="capture"
+                  :title="player.Capture"
+                  v-b-tooltip="{boundary:'viewport',placement:'bottom'}"
+                >
+                  {{ captures[player.Capture] || 'Unknown' }}
                 </div>
               </td>
             </tr>
@@ -93,6 +102,7 @@
   &.dead { color: grey; }
 }
 .smoo-server-players {
+  .capture::before { content: 'Capture: '; opacity: 0.5; }
   .costume-cap::before { content: 'Cap: '; opacity: 0.5; }
   .costume-body::before { content: 'Body: '; opacity: 0.5; }
   .location-kingdom + .location-stage { opacity: 0.5; }

@@ -27,7 +27,8 @@
   <b>"BanList"</b>: {
     <b>"Enabled"</b>: <i>false</i>,
     <b>"Players"</b>: [],
-    <b>"IpAddresses"</b>: []
+    <b>"IpAddresses"</b>: [],
+    <b>"Stages"</b>: []
   },
   <b>"Discord"</b>: {
     <b>"Token"</b>: <i>null</i>,
@@ -47,7 +48,7 @@
 </code>
     <p>
       The <code>settings.json</code> file is automatically created when the server starts.
-      At the right or above you can see the default values for server version <code>1.0.3</code>.
+      At the right or above you can see the default values for server version <code>1.0.4</code>.
     </p>
     <ul>
       <li><b>Server</b>:
@@ -128,6 +129,22 @@
             <b>IpAddresses</b>:
             An array of IPv4 addresses that are prevented from joining the server.
           </li>
+          <li>
+            <b>Stages</b>:
+            <b-badge variant="primary" v-b-tooltip.html="'This setting was added with server version <code>1.0.4</code>.'">1.0.4</b-badge>
+            An array of stage values that result in a kick
+            <b-icon icon="info-circle-fill" id="server-settings-kick"/>
+            from the server when a player joins one of them.
+            <b-tooltip target="server-settings-kick" triggers="hover">
+              <p>
+                A <code>kick</code> is not a <code>ban</code> from the server.
+              </p>
+              <p>
+                When entering a banned stage a packet that should crash the game is send to the client.
+                Until reconnecting again the server will not send or process any packets to or from the client.
+              </p>
+            </b-tooltip>
+          </li>
         </ul>
       </li>
       <li><b>Discord</b>:
@@ -155,18 +172,30 @@
       </li>
       <li>
         <b>Shines</b>:
-        <b-badge variant="primary" v-b-tooltip.html="'This setting was added with server version <code>1.0.3</code>.'">1.0.3</b-badge>
+        <b-badge variant="danger" id="settings-shines-1.0.3">1.0.3</b-badge>
+        <b-tooltip target="settings-shines-1.0.3" triggers="hover">
+          <p>
+            This setting was added with server version <code>1.0.3</code>.
+          </p>
+          <p>
+            Before server version <code>1.0.3</code> moon synchronization was always enabled.
+          </p>
+          <p>
+            Disabling it did not work correctly with server version <code>1.0.3</code>.
+            It prevented the server from saving them, but the collected moons were still send to all connected players.
+          </p>
+        </b-tooltip>
+        <b-badge variant="primary" class="ml-1" id="settings-shines-1.0.4">1.0.4</b-badge>
+        <b-tooltip target="settings-shines-1.0.4" triggers="hover">
+          <p>
+            Server version <code>1.0.4</code> fixed the issue that moons were still send to connected players even when this setting was disabled.
+          </p>
+        </b-tooltip>
         <ul>
           <li>
             <b>Enabled</b>:
             <code>true</code> or <code>false</code>.
             Can be used to disable moon synchronization between players.
-            <b-icon icon="info-circle-fill" id="server-settings-shines"/>
-            <b-tooltip target="server-settings-shines" triggers="hover">
-              Disabling it might not work correctly with server version <code>1.0.3</code>.
-              It prevents the server from saving them, but the collected moons are still send to all connected players.
-              Ths should be fixed with later versions.
-            </b-tooltip>
           </li>
         </ul>
       </li>

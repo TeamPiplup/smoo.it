@@ -16,17 +16,10 @@ export const servers: IServer[] = [
     hidden   : false,
     settings : {
       Server        : { MaxPlayers: 10 },
-      Scenario      : { MergeEnabled: true },
+      Scenario      : { MergeEnabled: false },
       Shines        : { Enabled: true },
       PersistShines : { Enabled: true },
     },
-  },
-  {
-    name     : 'Piplup (Capture Sync)',
-    server   : { host: 'piplup.smoo.it', port: 1028 },
-    location : { flag: 'fi', name: 'Finland' },
-    version  : linkTree('server', 'piplup/server', 'TeamPiplup/SmoOnlineServer'),
-    hidden   : false,
   },
   {
     name     : 'Piplup (UDP)',
@@ -38,8 +31,8 @@ export const servers: IServer[] = [
     },
     settings : {
       Scenario      : { MergeEnabled: true },
-      Shines        : { Enabled: true },
-      PersistShines : { Enabled: true },
+      Shines        : { Enabled: false },
+      PersistShines : { Enabled: false },
     },
     hidden   : true,
   },
@@ -52,7 +45,7 @@ export const servers: IServer[] = [
     settings : {
       Server        : { MaxPlayers: 10 },
       Scenario      : { MergeEnabled: true },
-      Shines        : { Enabled: true },
+      Shines        : { Enabled: true, ClearOnNewSaves: false },
       PersistShines : { Enabled: true },
     },
   },
@@ -65,22 +58,56 @@ export const servers: IServer[] = [
     settings : {
       Server        : { MaxPlayers: 8 },
       Scenario      : { MergeEnabled: true },
-      Shines        : { Enabled: true },
-      PersistShines : { Enabled: true },
+      Shines        : { Enabled: false },
+      PersistShines : { Enabled: false },
+    },
+    version: {
+      html    : linkTree('udp-json-api', 'rust/udp', 'Istador/smo-multi-rs'),
+      details : `
+        <p>Connecting requires a special SMOO ${linkTree('udp-client', 'mod version', 'speyejack/SuperMarioOdysseyOnline')} that speaks UDP.</p>
+        <p>Alternatively you can run a proxy on your PC that splits the TCP stream for the normal mod (build it from the server source code).</p>
+        <p class="text-secondary">Or you can connect to a proxy on port <code>1026</code>, but then there won't be any benefits from using UDP.</p>
+      `,
     },
   },
   {
-    name     : 'Piplup (UDP)',
-    server   : { host: 'piplup.smoo.it', port: 1029 },
-    location : { flag: 'us', name: 'United States' },
-    version: {
-      html    : linkRelease('1.0.5-rcl.1', 'udp/1.0.5', 'Istador/smo-multi-rs'),
-      details : `<p>Connecting requires mod version ${linkRelease('v1.4.0', 'v1.4.0', 'CraftyBoss/SuperMarioOdysseyOnline')} or later.</p>`,
-    },
+    name     : 'Krokilex',
+    server   : { host: 'krokilex.smoo.it', ip: '37.16.29.245' },
+    location : { flag: 'fr', name: 'France' },
+    version  : linkRelease('0.3.0', 'rust/0.3.0', 'JulesGuesnon/smo-online-server'),
     settings : {
-      Scenario      : { MergeEnabled: true },
-      Shines        : { Enabled: true },
-      PersistShines : { Enabled: true },
+      Server: { MaxPlayers: 8 },
+    },
+  },
+  {
+    dead     : true,
+    name     : 'Jeff',
+    server   : { host: 'jeff.smoo.it', ip: '172.105.137.146' },
+    location : { flag: 'us', name: 'US-East' },
+    version  : {
+      html    : linkTree('master', 'proximity/1.0.1', 'TheUbMunster/SmoOnlineServer'),
+      details : `
+        The Proximity Voice Chat (PVC) client requires additional settings:
+        <ul>
+          <li>PVC Port: <code>12000</code></li>
+          <li>Discord Application ID: <code>1011047390133899324</code></li>
+        </ul>
+      `,
+    },
+    settings: {
+      Server: { MaxPlayers: 6 },
+    },
+  },
+  {
+    name     : 'Ninunity Online',
+    server   : { host: 'ninunity.smoo.it', ip: '209.25.141.180', port: 62102 },
+    location : { flag: 'de', name: 'Germany' },
+    version  : linkRelease('1.0.3'),
+    settings : {
+      Server        : { MaxPlayers: 16 },
+      Scenario      : { MergeEnabled: false },
+      Shines        : { Enabled: false },
+      PersistShines : { Enabled: false },
     },
     hidden   : false,
   },

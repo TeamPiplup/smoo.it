@@ -21,12 +21,9 @@
         <b-icon icon="info-circle-fill" id="servers-hostname" @click.stop.prevent/>
         <b-tooltip target="servers-hostname" triggers="hover">
           <p>
-            Entering the hostname instead of an IPv4 address or changing the port is currently only possible with a
-            <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/tag/latest-dev">dev build</a-ext>
-            of the mod.
-          </p>
-          <p>
-            Entering hostnames doesn't work with the <a-int name="play" id="yuzu">yuzu</a-int> emulator.
+            Entering the hostname instead of an IPv4 address or changing the port is only possible
+            with mod version <code>v1.1.0</code> or
+            <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/latest">later</a-ext>.
           </p>
         </b-tooltip>
       </template>
@@ -46,11 +43,11 @@
             dynamic
           </b-badge>
           <b-tooltip
-            :target="'dynamic-ip-badge-' + host + '-' + port"
+            :target="'servers-ip-' + host + '-' + port"
             placement="top"
             boundary="viewport"
           >
-            <span v-html="getIPv4({ host, port })"/>
+            <span v-html="getIPv4({ host, port, ip })"/>
           </b-tooltip>
         </div>
         <div class="port" v-if="!hidden" :class="{ 'default': (port || defaultPort) === defaultPort }">{{ port || defaultPort }}</div>

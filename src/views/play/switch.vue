@@ -48,8 +48,9 @@
     <p>
       <ul>
         <li>
-          Go to the <a-ext href="https://github.com/Istador/odyssey-downgrade/releases">releases page</a-ext>
-          and download the latest <code>odyssey_downgrade.nro</code> file.
+          Download the <code>odyssey_downgrade.nro</code> file from the
+          <a-ext href="https://github.com/Istador/odyssey-downgrade/releases/latest">latest release</a-ext>
+          of the downgrader in the assets list.
         </li>
         <li>
           Put the file onto your SD card into the <code>/switch/</code> directory.
@@ -85,15 +86,16 @@
     <h5>Install the Super Mario Odyssey Online mod</h5>
     <p>
       <b>Step 1</b>:
-      Download the latest
-      <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/tag/latest-dev">dev build</a-ext>
-      of the mod whose filename ends with <code>_for_Switch.zip</code>.
-      The last asset in the list is the newest.
+      Download the
+      <a-ext href="https://github.com/CraftyBoss/SuperMarioOdysseyOnline/releases/latest">latest release</a-ext>
+      of the mod from the assets list.
+      The filename you need ends with <code>_for_Switch.zip</code>.
     </p>
     <p>
       <b>Step 2</b>:
       Extract the downloaded <code>.zip</code> file to receive an <code>atmosphere</code> folder,
       which you need to copy to the root directory of the SD card.
+      Ignore the <code>subsdk1.elf</code> file.
     </p>
     <p>
       Please notice, that there should already be an <code>atmosphere</code> folder on the SD card.
