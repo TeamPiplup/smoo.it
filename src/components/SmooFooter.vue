@@ -1,8 +1,8 @@
 <template>
   <footer>
     <nav>
-      <a-ext href="https://discord.gg/mWcn7uPhNW" icon="discord">Discord</a-ext>
-      <a-ext href="https://github.com/TeamPiplup/smoo.it" icon="github">GitHub</a-ext>
+      <a-ext href="https://piplup.smoo.it/discord" icon="discord">Discord</a-ext>
+      <a-ext href="https://piplup.smoo.it/github" icon="github">GitHub</a-ext>
       <b-checkbox class="dark-mode" v-model="darkMode" switch> Dark mode</b-checkbox>
     </nav>
   </footer>
